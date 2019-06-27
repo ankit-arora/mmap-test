@@ -1,1 +1,1 @@
-#Build and Test a mem-mapped array
+#Build and Test a memory mapped array
