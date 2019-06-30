@@ -20,13 +20,13 @@ func main() {
 	//	os.Exit(1)
 	//}
 
-	map_file, err := os.OpenFile("/tmp/test.dat", os.O_RDWR|os.O_CREATE, 0)
+	map_file, err := os.OpenFile("/tmp/test.dat", os.O_RDWR|os.O_CREATE, 0777)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	_, err = map_file.Seek(int64(t-1), 0)
+	_, err = map_file.Seek(int64(t), 0)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -49,6 +49,13 @@ func main() {
 	//}
 
 	fmt.Println(*map_array)
+
+	//err = syscall.Fdatasync(int(map_file.Fd()))
+
+	//if err != nil {
+	//	fmt.Println(err)
+	//	os.Exit(1)
+	//}
 
 	err = syscall.Munmap(mmap)
 	if err != nil {
